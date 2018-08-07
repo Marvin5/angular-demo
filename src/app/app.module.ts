@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {AppRoutingModule} from './app-routing.module';
 // component
 import {AppComponent} from './app.component';
@@ -14,6 +13,8 @@ import {DashboardComponent} from './component/dashboard/dashboard.component';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './service/in-memory-data.service';
 import {HeroSearchComponent} from './component/hero-search/hero-search.component';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {PageNotFoundComponent} from './component/page-not-found-component/page-not-found.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {HeroSearchComponent} from './component/hero-search/hero-search.component
     MessageComponent,
     DashboardComponent,
     HeroSearchComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,7 @@ import {HeroSearchComponent} from './component/hero-search/hero-search.component
     HttpClientModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
     BrowserAnimationsModule,
-    NgZorroAntdModule.forRoot(),
+    NgZorroAntdModule,
     ReactiveFormsModule,
     AppRoutingModule
   ],
