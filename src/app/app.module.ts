@@ -1,44 +1,27 @@
-import {HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AppRoutingModule} from './app-routing.module';
-// component
-import {AppComponent} from './app.component';
-import {HeroDetailComponent} from './component/hero-detail/hero-detail.component';
-import {HeroesComponent} from './component/heroes/heroes.component';
-import {MessageComponent} from './component/message/message.component';
-import {DashboardComponent} from './component/dashboard/dashboard.component';
-import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './service/in-memory-data.service';
-import {HeroSearchComponent} from './component/hero-search/hero-search.component';
-import {NgZorroAntdModule} from 'ng-zorro-antd';
-import {PageNotFoundComponent} from './component/page-not-found-component/page-not-found.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './hero/service/in-memory-data.service';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { PageNotFoundComponent } from './component/page-not-found-component/page-not-found.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    MessageComponent,
-    DashboardComponent,
-    HeroSearchComponent,
-    PageNotFoundComponent,
-  ],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
     BrowserAnimationsModule,
-    NgZorroAntdModule,
-    ReactiveFormsModule,
+    SharedModule,
+    HttpClientModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
