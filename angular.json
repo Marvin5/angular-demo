@@ -18,9 +18,15 @@
             "polyfills": "src/polyfills.ts",
             "assets": [
               "src/assets",
-              "src/favicon.ico"
+              "src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -71,6 +77,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.css"
             ],
             "assets": [
@@ -123,7 +130,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "css"
+      "styleext": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"

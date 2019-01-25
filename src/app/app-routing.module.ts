@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: './auth/auth.module#AuthModule'
   },
   {
+    path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }
@@ -23,5 +28,4 @@ const routes: Routes = [
   declarations: [],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
