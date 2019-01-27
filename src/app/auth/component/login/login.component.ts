@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { OauthResponseDto } from '../../dto/oauth.dto';
+import { ClientDetail, GrantType, RequestParam } from '../../constant/oauth.constant';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +17,21 @@ export class LoginComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
+    let formValue = this.validateForm.getRawValue();
+
+    let formData = new FormData();
+    formData.set(RequestParam.clientId, ClientDetail.clientId);
+    formData.set(RequestParam.clientSecret, ClientDetail.clientSecret);
+    formData.set(RequestParam.grantType, GrantType.password);
+    formData.set(RequestParam.username, formValue.userName);
+    formData.set(RequestParam.password, formValue.password);
+    this.http.post('//localhost:7070/oauth/token', formData).subscribe((data: OauthResponseDto) => {
+      localStorage.setItem('refresh_token', data.refresh_token);
+      console.log(data);
+    });
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -24,5 +39,9 @@ export class LoginComponent implements OnInit {
       password: [null, [Validators.required]],
       remember: [true]
     });
+
+    // 模拟自动登陆
+    let refreshToken = localStorage.getItem('refresh_token');
+    let formData = new FormData();
   }
 }

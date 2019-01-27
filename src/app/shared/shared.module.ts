@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
@@ -11,6 +12,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    HttpClientModule,
     // Third party module
     NgZorroAntdModule
   ],
